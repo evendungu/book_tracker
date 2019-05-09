@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>BOOK TRACKER</title>
+        
+    </head>
+    <body>
+        <div id="results"></div>
+        <form method="POST">
+            <span>
+                <label>Author: </label>
+                <input name="Author" id="author" type="text"/>
+            </span>
+            <span>                
+                <label>Title: </label>
+                <input name="Title" id="title" type="text"/>
+            </span>
+            <!-- <input type="button" onsubmit="createRecord();" value="Create"/> -->
+            <button type="submit" onclick="createRecord();">Create</button>
+            
+
+        </form>
+        <!-- <script>
+            function createRecord() {
+                console.log('alerts');
+                const author = document.getElementById("author").value;
+                const title = document.getElementById("title").value;
+                console.log(author,title);
+                fetch(
+                    `http://127.0.0.1:8888/v1/addbook?author=${author}&title=${title}`,
+                    {method: 'GET'}
+                ).then((response)=>{
+                    const res = response.json();
+                    document.getElementById("results").innerHTML += res.data;
+                });
+            };
+        </script> -->
+        <script>
+            function createRecord() {
+                const author = document.getElementById("author").value;
+                const title = document.getElementById("title").value;
+                window.alert(author,title);
+                const Http = new XMLHttpRequest();
+                const url = `http://127.0.0.1:8888/v1/addbook?author=${author}&title=${title}`;
+                Http.open("GET", url);
+                Http.send();
+
+                Http.onreadystatechange=function(){
+                    if(this.readyState==4 && this.status==200){
+                        console.log(Http.responseText)
+
+                    }
+                
+            }
+
+            }
+        
+        </script>
+    </body>
+</html>
